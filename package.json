@@ -21,7 +21,8 @@
   "homepage": "https://github.com/MarcosJBM/daily-diet-api#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "fastify": "^4.24.3"
+    "fastify": "^4.24.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
