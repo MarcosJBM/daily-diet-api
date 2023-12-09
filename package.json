@@ -1,0 +1,31 @@
+{
+  "name": "daily-diet-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcosJBM/daily-diet-api.git"
+  },
+  "author": {
+    "name": "Marcos Botene",
+    "email": "marcosjbotene@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcosJBM/daily-diet-api/issues"
+  },
+  "homepage": "https://github.com/MarcosJBM/daily-diet-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "fastify": "^4.24.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  }
+}
