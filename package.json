@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/MarcosJBM/daily-diet-api#readme",
   "dependencies": {
+    "@fastify/jwt": "^7.2.4",
     "bcrypt": "^5.1.1",
     "fastify": "^4.24.3",
     "knex": "^3.1.0",
