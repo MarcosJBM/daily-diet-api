@@ -31,6 +31,10 @@ const envSchema = z.object({
       required_error: 'PORT is required',
     })
     .default(3333),
+  FASTIFY_JWT_SECRET: z.string({
+    invalid_type_error: 'FASTIFY_JWT_SECRET has an invalid type',
+    required_error: 'FASTIFY_JWT_SECRET is required',
+  }),
 });
 
 const result = envSchema.safeParse(process.env);
