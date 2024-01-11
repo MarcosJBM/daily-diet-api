@@ -38,7 +38,10 @@ export async function authRoutes(app: FastifyInstance) {
     if (!isPasswordCorrect)
       return reply.status(400).send({ error: 'Invalid password' });
 
-    const token = app.jwt.sign({ name: user.name, email }, { expiresIn: '7d' });
+    const token = app.jwt.sign(
+      { id: user.id, name: user.name, email },
+      { expiresIn: '7d' }
+    );
 
     return reply.status(200).send({ token });
   });
