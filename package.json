@@ -22,21 +22,22 @@
   },
   "homepage": "https://github.com/MarcosJBM/daily-diet-api#readme",
   "dependencies": {
-    "@fastify/jwt": "^7.2.4",
-    "bcrypt": "^5.1.1",
-    "fastify": "^4.24.3",
-    "knex": "^3.1.0",
-    "zod": "^3.22.4"
+    "@fastify/jwt": "7.2.4",
+    "bcrypt": "5.1.1",
+    "fastify": "4.25.2",
+    "fastify-plugin": "4.5.1",
+    "knex": "3.1.0",
+    "zod": "3.22.4"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/node": "^20.10.4",
-    "@types/supertest": "^2.0.16",
-    "dotenv": "^16.3.1",
-    "sqlite3": "^5.1.6",
-    "supertest": "^6.3.3",
-    "tsx": "^4.6.2",
-    "typescript": "^5.3.3",
-    "vitest": "^1.0.4"
+    "@types/bcrypt": "5.0.2",
+    "@types/node": "20.11.0",
+    "@types/supertest": "2.0.16",
+    "dotenv": "16.3.1",
+    "sqlite3": "5.1.7",
+    "supertest": "6.3.3",
+    "tsx": "4.7.0",
+    "typescript": "5.3.3",
+    "vitest": "1.1.3"
   }
 }
