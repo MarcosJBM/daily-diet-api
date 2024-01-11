@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { validateSchema } from '../utils';
-import { knexInstance } from '../database';
+import { validateSchema } from '@/utils';
+import { knexInstance } from '@/database';
 import { compare } from 'bcrypt';
 
 const loginBodySchema = z.object({
