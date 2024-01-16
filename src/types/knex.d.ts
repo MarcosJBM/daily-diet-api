@@ -10,5 +10,14 @@ declare module 'knex/types/tables' {
       salt: string;
       created_at: string;
     };
+    meals: {
+      id: string;
+      name: string;
+      description: string;
+      date: Date;
+      hour: string;
+      is_on_diet: boolean;
+      user_id: number;
+    };
   }
 }
