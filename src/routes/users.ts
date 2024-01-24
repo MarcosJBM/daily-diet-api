@@ -1,9 +1,10 @@
+import { genSaltSync, hashSync } from 'bcrypt';
+import { randomUUID } from 'crypto';
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { genSaltSync, hashSync } from 'bcrypt';
-import { validateSchema } from '@/utils';
+
 import { knexInstance } from '@/database';
-import { randomUUID } from 'crypto';
+import { validateSchema } from '@/utils';
 
 const createUserBodySchema = z.object({
   name: z

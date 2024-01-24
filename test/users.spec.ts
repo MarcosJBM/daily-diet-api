@@ -1,6 +1,8 @@
 import { execSync } from 'node:child_process';
-import { afterAll, beforeAll, describe, it } from 'vitest';
+
 import supertest from 'supertest';
+import { afterAll, beforeAll, describe, it } from 'vitest';
+
 import { app } from '../src/app';
 
 describe('Users routes', () => {

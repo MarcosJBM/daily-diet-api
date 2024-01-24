@@ -1,8 +1,9 @@
+import { compare } from 'bcrypt';
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { validateSchema } from '@/utils';
+
 import { knexInstance } from '@/database';
-import { compare } from 'bcrypt';
+import { validateSchema } from '@/utils';
 
 const loginBodySchema = z.object({
   email: z
@@ -40,7 +41,7 @@ export async function authRoutes(app: FastifyInstance) {
 
     const token = app.jwt.sign(
       { id: user.id, name: user.name, email },
-      { expiresIn: '7d' }
+      { expiresIn: '7d' },
     );
 
     return reply.status(200).send({ token });

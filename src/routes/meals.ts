@@ -1,10 +1,10 @@
-import { FastifyInstance } from 'fastify';
-
-import { authenticate } from '@/plugins';
-import { z } from 'zod';
-import { validateSchema } from '@/utils';
 import { randomUUID } from 'crypto';
+import { FastifyInstance } from 'fastify';
+import { z } from 'zod';
+
 import { knexInstance } from '@/database';
+import { authenticate } from '@/plugins';
+import { validateSchema } from '@/utils';
 
 const createMealBodySchema = z.object({
   name: z
@@ -64,6 +64,6 @@ export async function mealsRoutes(app: FastifyInstance) {
       await knexInstance('meals').insert(meal);
 
       return reply.status(201).send();
-    }
+    },
   );
 }

@@ -1,7 +1,8 @@
+import { execSync } from 'child_process';
 import supertest from 'supertest';
 import { afterAll, beforeAll, describe, it } from 'vitest';
+
 import { app } from '../src/app';
-import { execSync } from 'child_process';
 
 describe('Auth routes', () => {
   beforeAll(async () => {

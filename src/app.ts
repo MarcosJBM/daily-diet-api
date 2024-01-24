@@ -1,6 +1,8 @@
-import { fastify } from 'fastify';
 import { fastifyJwt } from '@fastify/jwt';
+import { fastify } from 'fastify';
+
 import { authRoutes, mealsRoutes, usersRoutes } from '@/routes';
+
 import { env } from './env';
 
 export const app = fastify();
