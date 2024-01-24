@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "test": "vitest",
+    "pretty": "prettier --write .",
+    "lint": "eslint --fix .",
     "knex": "node --loader tsx ./node_modules/.bin/knex"
   },
   "repository": {
