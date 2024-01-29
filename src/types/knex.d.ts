@@ -18,7 +18,7 @@ declare module 'knex/types/tables' {
       date: Date;
       hour: string;
       is_on_diet: boolean;
-      user_id: number;
+      user_id: string;
     };
   }
 }

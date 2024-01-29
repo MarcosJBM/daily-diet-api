@@ -29,41 +29,35 @@ const createMealBodySchema = z.object({
     invalid_type_error: 'Hour has an invalid type',
     required_error: 'Hour is required',
   }),
-  isOnDiet: z.boolean({
+  is_on_diet: z.boolean({
     invalid_type_error: 'IsOnDiet has an invalid type',
     required_error: 'IsOnDiet is required',
   }),
 });
 
-type CreateMealBodySchema = z.infer<typeof createMealBodySchema>;
-
 export async function mealsRoutes(app: FastifyInstance) {
-  app.post<{ Body: CreateMealBodySchema }>(
-    '/create',
-    { onRequest: [authenticate] },
-    async (request, reply) => {
-      const userId = request.user.id;
+  app.post('/create', { onRequest: [authenticate] }, async (request, reply) => {
+    const userId = request.user.id;
 
-      const result = validateSchema(request.body, createMealBodySchema);
+    const result = validateSchema(request.body, createMealBodySchema);
 
-      if (typeof result === 'string')
-        return reply.status(400).send({ error: result });
+    if (typeof result === 'string')
+      return reply.status(400).send({ error: result });
 
-      const { date, description, hour, isOnDiet, name } = result;
+    const { date, description, hour, is_on_diet, name } = result;
 
-      const meal = {
-        id: randomUUID(),
-        name,
-        description,
-        date,
-        hour,
-        is_on_diet: isOnDiet,
-        user_id: userId,
-      };
+    const meal = {
+      id: randomUUID(),
+      name,
+      description,
+      date,
+      hour,
+      is_on_diet,
+      user_id: userId,
+    };
 
-      await knexInstance('meals').insert(meal);
+    await knexInstance('meals').insert(meal);
 
-      return reply.status(201).send();
-    },
-  );
+    return reply.status(201).send();
+  });
 }
