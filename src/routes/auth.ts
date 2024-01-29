@@ -32,12 +32,12 @@ export async function authRoutes(app: FastifyInstance) {
 
     const user = await knexInstance('users').where({ email }).first();
 
-    if (!user) return reply.status(400).send({ error: 'User not found' });
+    if (!user) return reply.status(400).send({ error: 'User not found.' });
 
     const isPasswordCorrect = await compare(password, user.hash);
 
     if (!isPasswordCorrect)
-      return reply.status(400).send({ error: 'Invalid password' });
+      return reply.status(400).send({ error: 'Invalid password.' });
 
     const token = app.jwt.sign(
       { id: user.id, name: user.name, email },

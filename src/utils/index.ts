@@ -1,1 +1,1 @@
-export * from './validate-schema';
+export { validateSchema } from './validate-schema';
