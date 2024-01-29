@@ -1,4 +1,5 @@
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
+
 import supertest from 'supertest';
 import { afterAll, beforeAll, describe, it } from 'vitest';
 
@@ -23,13 +24,13 @@ describe('Auth routes', () => {
       .send({
         name: 'John Doe',
         email: 'johndoe@gmail.com',
-        password: '1mdas09k1p2j8f0aks42',
+        password: 'abc123',
       })
       .expect(201);
 
     await supertest(app.server)
       .post('/auth/login')
-      .send({ email: 'johndoe@gmail.com', password: '1mdas09k1p2j8f0aks42' })
+      .send({ email: 'johndoe@gmail.com', password: 'abc123' })
       .expect(200);
   });
 });

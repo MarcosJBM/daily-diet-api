@@ -24,7 +24,7 @@ describe('Users routes', () => {
       .send({
         name: 'John Doe',
         email: 'johndoe@gmail.com',
-        password: '1mdas09k1p2j8f0aks42',
+        password: 'abc123',
       })
       .expect(201);
   });
