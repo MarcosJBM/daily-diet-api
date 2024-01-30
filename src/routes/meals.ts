@@ -151,4 +151,12 @@ export async function mealsRoutes(app: FastifyInstance) {
       return reply.status(204).send();
     },
   );
+
+  app.get('/', { onRequest: [authenticate] }, async (request, reply) => {
+    const userId = request.user.id;
+
+    const meals = await knexInstance('meals').where({ user_id: userId });
+
+    return reply.status(200).send({ meals });
+  });
 }
