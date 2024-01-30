@@ -7,7 +7,7 @@
   - [x] Descrição
   - [x] Data e Hora
   - [x] Está dentro ou não da dieta
-- [ ] Deve ser possível editar uma refeição, podendo alterar todos os dados acima - **/meals/update**
+- [x] Deve ser possível editar uma refeição, podendo alterar todos os dados acima - **/meals/update**
 - [ ] Deve ser possível apagar uma refeição - **/meals/delete**
 - [ ] Deve ser possível listar todas as refeições de um usuário - **/users/meals?**
 - [ ] Deve ser possível visualizar uma única refeição
