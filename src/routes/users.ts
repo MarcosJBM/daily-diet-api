@@ -1,5 +1,6 @@
+import { randomUUID } from 'node:crypto';
+
 import { genSaltSync, hashSync } from 'bcrypt';
-import { randomUUID } from 'crypto';
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
