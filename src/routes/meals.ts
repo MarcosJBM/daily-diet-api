@@ -123,4 +123,32 @@ export async function mealsRoutes(app: FastifyInstance) {
       return reply.status(200).send();
     },
   );
+
+  app.delete(
+    '/delete/:mealId',
+    { onRequest: [authenticate] },
+    async (request, reply) => {
+      const paramsSchema = z.object({
+        mealId: z.string({
+          invalid_type_error: 'Meal ID has an invalid type',
+          required_error: 'Meal ID is required',
+        }),
+      });
+
+      const paramsSchemaResult = validateSchema(request.params, paramsSchema);
+
+      if (typeof paramsSchemaResult === 'string')
+        return reply.status(400).send({ error: paramsSchemaResult });
+
+      const { mealId } = paramsSchemaResult;
+
+      const meal = await knexInstance('meals').where({ id: mealId }).first();
+
+      if (!meal) return reply.status(400).send({ error: 'Meal not found.' });
+
+      await knexInstance('meals').where({ id: mealId }).delete();
+
+      return reply.status(204).send();
+    },
+  );
 }
