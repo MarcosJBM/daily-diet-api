@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { knexInstance } from '@/database';
 import { authenticate } from '@/plugins';
-import { validateSchema } from '@/utils';
+import { findUserMetrics, updateUserMetrics, validateSchema } from '@/utils';
 
 export async function mealsRoutes(app: FastifyInstance) {
   app.post('/create', { onRequest: [authenticate] }, async (request, reply) => {
@@ -47,7 +47,7 @@ export async function mealsRoutes(app: FastifyInstance) {
 
     const { date, description, hour, is_on_diet, name } = bodySchemaResult;
 
-    const meal = {
+    await knexInstance('meals').insert({
       id: randomUUID(),
       name,
       description,
@@ -55,9 +55,11 @@ export async function mealsRoutes(app: FastifyInstance) {
       hour,
       is_on_diet,
       user_id: userId,
-    };
+    });
 
-    await knexInstance('meals').insert(meal);
+    const metrics = await findUserMetrics(userId);
+
+    if (metrics) await updateUserMetrics({ is_on_diet, ...metrics });
 
     return reply.status(201).send();
   });
