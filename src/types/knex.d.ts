@@ -20,5 +20,14 @@ declare module 'knex/types/tables' {
       is_on_diet: boolean;
       user_id: string;
     };
+    metrics: {
+      id: string;
+      registered_meals: number;
+      best_sequence: number;
+      current_sequence: number;
+      off_the_diet: number;
+      within_the_diet: number;
+      user_id: string;
+    };
   }
 }
