@@ -68,6 +68,8 @@ export async function mealsRoutes(app: FastifyInstance) {
     '/update/:mealId',
     { onRequest: [authenticate] },
     async (request, reply) => {
+      const userId = request.user.id;
+
       const paramsSchema = z.object({
         mealId: z.string({
           invalid_type_error: 'Meal ID has an invalid type',
@@ -111,6 +113,15 @@ export async function mealsRoutes(app: FastifyInstance) {
 
       const { mealId } = paramsSchemaResult;
 
+      const hasMeal = await knexInstance('meals')
+        .where({
+          user_id: userId,
+          id: mealId,
+        })
+        .first();
+
+      if (!hasMeal) return reply.status(400).send({ error: 'Meal not found.' });
+
       const bodySchemaResult = validateSchema(request.body, bodySchema);
 
       if (typeof bodySchemaResult === 'string')
@@ -119,7 +130,7 @@ export async function mealsRoutes(app: FastifyInstance) {
       const { date, description, hour, is_on_diet, name } = bodySchemaResult;
 
       await knexInstance('meals')
-        .where({ id: mealId })
+        .where({ user_id: userId, id: mealId })
         .update({ date, description, hour, is_on_diet, name });
 
       return reply.status(200).send();
@@ -130,6 +141,8 @@ export async function mealsRoutes(app: FastifyInstance) {
     '/delete/:mealId',
     { onRequest: [authenticate] },
     async (request, reply) => {
+      const userId = request.user.id;
+
       const paramsSchema = z.object({
         mealId: z.string({
           invalid_type_error: 'Meal ID has an invalid type',
@@ -144,7 +157,9 @@ export async function mealsRoutes(app: FastifyInstance) {
 
       const { mealId } = paramsSchemaResult;
 
-      const meal = await knexInstance('meals').where({ id: mealId }).first();
+      const meal = await knexInstance('meals')
+        .where({ user_id: userId, id: mealId })
+        .first();
 
       if (!meal) return reply.status(400).send({ error: 'Meal not found.' });
 
@@ -163,6 +178,8 @@ export async function mealsRoutes(app: FastifyInstance) {
   });
 
   app.get('/:mealId', { onRequest: [authenticate] }, async (request, reply) => {
+    const userId = request.user.id;
+
     const paramsSchema = z.object({
       mealId: z.string({
         invalid_type_error: 'Meal ID has an invalid type',
@@ -177,7 +194,9 @@ export async function mealsRoutes(app: FastifyInstance) {
 
     const { mealId } = paramsSchemaResult;
 
-    const meal = await knexInstance('meals').where({ id: mealId }).first();
+    const meal = await knexInstance('meals')
+      .where({ user_id: userId, id: mealId })
+      .first();
 
     if (!meal) return reply.status(400).send({ error: 'Meal not found.' });
 
