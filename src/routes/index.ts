@@ -1,3 +1,2 @@
-export { authRoutes } from './auth';
 export { mealsRoutes } from './meals';
-export { usersRoutes } from './users';
+export { usersRoutes } from './users/routes';

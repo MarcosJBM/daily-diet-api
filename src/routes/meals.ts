@@ -4,11 +4,11 @@ import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
 import { knexInstance } from '@/database';
-import { authenticate } from '@/plugins';
+import { verifyJwt } from '@/plugins';
 import { findUserMetrics, updateUserMetrics, validateSchema } from '@/utils';
 
 export async function mealsRoutes(app: FastifyInstance) {
-  app.post('/create', { onRequest: [authenticate] }, async (request, reply) => {
+  app.post('/create', { onRequest: [verifyJwt] }, async (request, reply) => {
     const bodySchema = z.object({
       name: z
         .string({
@@ -66,7 +66,7 @@ export async function mealsRoutes(app: FastifyInstance) {
 
   app.put(
     '/update/:mealId',
-    { onRequest: [authenticate] },
+    { onRequest: [verifyJwt] },
     async (request, reply) => {
       const userId = request.user.id;
 
@@ -139,7 +139,7 @@ export async function mealsRoutes(app: FastifyInstance) {
 
   app.delete(
     '/delete/:mealId',
-    { onRequest: [authenticate] },
+    { onRequest: [verifyJwt] },
     async (request, reply) => {
       const userId = request.user.id;
 
@@ -169,7 +169,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     },
   );
 
-  app.get('/', { onRequest: [authenticate] }, async (request, reply) => {
+  app.get('/', { onRequest: [verifyJwt] }, async (request, reply) => {
     const userId = request.user.id;
 
     const meals = await knexInstance('meals').where({ user_id: userId });
@@ -177,7 +177,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     return reply.status(200).send({ meals });
   });
 
-  app.get('/:mealId', { onRequest: [authenticate] }, async (request, reply) => {
+  app.get('/:mealId', { onRequest: [verifyJwt] }, async (request, reply) => {
     const userId = request.user.id;
 
     const paramsSchema = z.object({

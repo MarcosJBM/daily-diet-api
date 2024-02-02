@@ -1,1 +1,1 @@
-export { authenticate } from './authenticate';
+export { verifyJwt } from './verify-jwt';

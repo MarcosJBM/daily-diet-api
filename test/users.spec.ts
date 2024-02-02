@@ -33,13 +33,27 @@ describe('Users routes', () => {
   });
 
   it('should be able to create a new user', async () => {
-    const response = await supertest(app.server).post('/users/create').send({
+    const response = await supertest(app.server).post('/users/register').send({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
       password: 'abc123',
     });
 
     expect(response.status).toEqual(201);
+  });
+
+  it('should be able to log in', async () => {
+    await supertest(app.server).post('/users/register').send({
+      name: 'John Doe',
+      email: 'johndoe@gmail.com',
+      password: 'abc123',
+    });
+
+    const response = await supertest(app.server)
+      .post('/users/authenticate')
+      .send({ email: 'johndoe@gmail.com', password: 'abc123' });
+
+    expect(response.status).toEqual(200);
   });
 
   it('should be able to get user metrics', async () => {
