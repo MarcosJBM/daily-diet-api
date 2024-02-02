@@ -1,2 +1,2 @@
-export { mealsRoutes } from './meals';
+export { mealsRoutes } from './meals/routes';
 export { usersRoutes } from './users/routes';
