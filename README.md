@@ -1,23 +1,23 @@
-## Regras da aplicação
+<div align="center">
+  <img src=".github/images/logo.svg" height="72"/>
+</div>
 
-- [x] Deve ser possível criar um usuário
-- [x] Deve ser possível identificar o usuário entre as requisições (Usar JWT para realizar as requisições)
-- [x] Deve ser possível registrar uma refeição feita, com as seguintes informações
-  - [x] Nome
-  - [x] Descrição
-  - [x] Data e Hora
-  - [x] Está dentro ou não da dieta
-- [x] Deve ser possível editar uma refeição, podendo alterar todos os dados acima
-- [x] Deve ser possível apagar uma refeição
-- [x] Deve ser possível listar todas as refeições de um usuário
-- [x] Deve ser possível visualizar uma única refeição
-- [x] Deve ser possível recuperar as métricas de um usuário
-  - [x] Quantidade total de refeições registradas
-  - [x] Quantidade total de refeições dentro da dieta
-  - [x] Quantidade total de refeições fora da dieta
-  - [x] Melhor sequência de refeições dentro da dieta
-- [x] O usuário só pode visualizar, editar e apagar as refeições o qual ele criou
+## 📖 About
 
-## Observações
+Simple API for daily diet control.
 
-As refeições devem ser relacionadas ao usuário que criou a refeição.
+This API is part of a series of optional challenges in the Node.js track in Rocketseat's Ignite course.
+
+## 🔩 Technologies
+
+These were the main technologies used to develop this API:
+
+- [Fastify](https://fastify.dev/)
+- [Knex.js](https://knexjs.org/)
+- [Zod](https://zod.dev/)
+- [Vitest](https://vitest.dev/)
+
+## 🚀 Future Improvements
+
+- [ ] Improve project architecture using SOLID
+- [ ] Use Prisma instead of Knex
